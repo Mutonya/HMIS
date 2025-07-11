@@ -104,6 +104,11 @@ public class AuthServiceImpl implements AuthService{
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
 
+        //we shall set the roles here so we can edit in future and ensure the roles exist in the db
+
+        user.setRoles(registerUserRequest.getRoles());
+
+
         //write to the db and return the value of user
 
         return authrepo.save(user);

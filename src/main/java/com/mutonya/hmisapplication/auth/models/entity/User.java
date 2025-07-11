@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import javax.xml.crypto.Data;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -25,6 +27,9 @@ public class User {
     private String email;
     @Column(name = "password")
     private String password;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles = new HashSet<>();
 
 
     /**
@@ -42,7 +47,7 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String firstname, String lastname, String email, String password, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public User(Long id, String firstname, String lastname, String email, String password, LocalDateTime createdAt, LocalDateTime updatedAt,Set<Role> roles ) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -50,10 +55,19 @@ public class User {
         this.password = password;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.roles = roles;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public void setId(Long id) {

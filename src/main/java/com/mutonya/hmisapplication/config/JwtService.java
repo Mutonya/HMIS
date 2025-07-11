@@ -23,9 +23,9 @@ public class JwtService {
     @Value("${security.jwt.expiration-time}")
     private long jwtExpiration;
 
+
     private String buildToken(
-            Map<String,
-                    Object> extraClaims,
+            Map<String, Object> extraClaims,
             UserDetails userDetails,
             long jwtExpiration) {
 

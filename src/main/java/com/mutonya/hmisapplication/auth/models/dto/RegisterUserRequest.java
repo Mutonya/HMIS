@@ -1,20 +1,34 @@
 package com.mutonya.hmisapplication.auth.models.dto;
 
+import com.mutonya.hmisapplication.auth.models.entity.Role;
+
+import java.util.Set;
+
 public class RegisterUserRequest {
 
     private String firstname;
     private String lastname;
     private String email;
     private String password;
+    private Set<Role> roles;
 
-    public RegisterUserRequest(String firstname, String lastname, String email, String password) {
+    public RegisterUserRequest(String firstname, String lastname, String email, String password,Set<Role> roles) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
+        this.roles = roles;
     }
 
     public RegisterUserRequest() {
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public String getFirstname() {
